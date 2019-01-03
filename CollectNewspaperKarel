@@ -1,0 +1,44 @@
+import stanford.karel.*;
+
+public class CollectNewspaperKarel extends SuperKarel {
+	public void run() {
+		moveToStartPoint();
+		createInnerWall();
+	}
+	private void moveToStartPoint() {
+		faceNorth();
+		move();
+		faceEast();
+	}
+	private void createInnerWall() {
+		for(int i = 0; i < 4; i++ ) {
+			while(frontIsClear()) {
+				move();
+				if(noBeepersPresent())
+					putBeeper();
+				if (frontIsBlocked()) {
+					pickBeeper();
+					turnAround();
+					move();
+					turnRight();
+				} 
+			}
+		}
+	}
+	public void faceEast() {
+		while(notFacingEast()) {
+			turnLeft();
+		}
+	}
+	public void faceWest() {
+		while(notFacingWest()) {
+			turnLeft();
+		}
+	}
+
+	public void faceNorth() {
+		while(notFacingNorth()) {
+			turnLeft();
+		}
+	}
+}
