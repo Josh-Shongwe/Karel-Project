@@ -1,0 +1,57 @@
+import stanford.karel.*;
+
+public class MidpointFindingKarel extends SuperKarel {
+ /* Sets down the beepers on the first row excluding the first and last then resets the boundaries. After reaching the
+  * then resets the boundaries. After reaching the middle and being one off Karel turns around and move to place the last
+  * beeper, the midpoint. */
+  
+  public void run() {
+    beeperPlacer();
+    beeperDeleter();
+    endBeeper();  
+  }
+  
+  //Sets down beepers on the first row excluding the first and last.
+  public void beeperDeleter(){
+    if(beepersPresent()){
+      while(beepersPresent()){
+        move();
+     } 
+     else if(noBeepersPresent()){
+      newBoundary();
+      beeperDeleter();
+        }
+      }
+    }
+    
+    public void beeperPlacer(){
+      while(frontIsClear()){
+        move();
+        putBeeper();
+      }
+      while(frontIsBlocked()){
+        turnAround();
+        pickBeeper();
+        move();
+         }
+      }
+      
+      //Karel turns around and moves to place the last beeper, the midpoint.
+      public void endBeeper(){
+        turnAround();
+        move();
+        putBeeper();
+      }
+      
+      //Karel resets the end points in order to narrow down and find the midpoints.
+      public void newBoundary(){
+        if(facingEast() || facingWest()){
+         turnAround();
+          move();
+          pickBeeper();
+          move();
+          }
+        }
+      }
+      
+     
