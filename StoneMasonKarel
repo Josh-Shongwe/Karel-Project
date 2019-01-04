@@ -1,0 +1,75 @@
+import stanford.karel.*;
+
+public class StoneMasonKarel extends SuperKarel{
+  public void run(){
+    //Places the first beeper down at the original location.
+    putBeeper();
+    //Orient Karel to move upwards.
+    turnLeft();
+    //Completes the first row.
+    moveUp();
+    adjust();
+    //Completes the second row.
+    nextColumn();
+    faceSouth();
+    moveDown();
+    //Completes the third row.
+    turnLeft();
+    nextColumn();
+    putBeeper();
+    turnLeft();
+    moveUp();
+    //Completes the fourth row.
+    adjust();
+    nextColumn();
+    faceSouth();
+    moveDown();
+   }
+   
+   //Karel moves upwards and places beepers where they need to be.
+   public void moveUp(){
+    while(frontIsClear()){
+      beeperPlace();
+      move();
+      }
+    }
+    
+    //Karel assumes that the next column will be four spaces away (instructions).
+    public void nextColumn(){
+      for(int i = 0; i <= 3; i++){
+        move();
+       }
+     }
+     
+     //Karel moves down and places beepers where they need to be.
+     public void moveDown(){
+      while(frontIsClear()){
+        beeperPlace();
+        faceSouth();
+        move();
+       }
+     }
+     
+     //When Karel is stuck she adjust by turning right until the front is clear.
+     public void adjust(){
+      while(frontIsBlocked()){
+        turnRight();
+        beeperPlace();
+       }
+     }
+     
+     //Redirects Karel to move south bound.
+     public void faceSouth(){
+      while(notFacingSouth()){
+        turnLeft();
+       }
+     }
+     
+     //Karel places beepers where beepers are not.
+     public void beeperPlace(){
+      if(noBeepersPresent()){
+        putBeeper();
+       }
+      }
+  }
+    
